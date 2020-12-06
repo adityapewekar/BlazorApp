@@ -1,0 +1,36 @@
+@page "/datepicker"
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+            <div class="form-group">
+                <label for="txtStartDate">Start Date</label>
+                <JQDatePicker Id="txtStartDate" BindValue="@StartDate" 
+                    MaxDate="@EndDate"
+                    DateSelected="(date)=>StartDate=date"
+                    Format="dd/MMM/yyyy"
+                    >
+                    </JQDatePicker>
+            </div>
+            <div class="form-group">
+                <label for="txtEndDate">End Date</label>
+                <JQDatePicker Id="txtEndDate" BindValue="@EndDate" 
+                    MinDate="@StartDate"
+                    DateSelected="(date)=>EndDate=date"
+                    Format="dd/MMM/yyyy"
+                    >
+                    </JQDatePicker>
+            </div>
+        </div>
+            <div class="row">
+            <p>Start Date : @StartDate</p>
+        </div>
+                    <div class="row">
+            <p>End Date : @EndDate</p>
+        </div>
+    </div>
+</div>
+@code{
+    
+        private DateTime? StartDate{get;set;}
+        private DateTime? EndDate{get;set;}
+}

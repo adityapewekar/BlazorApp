@@ -1,0 +1,7 @@
+    <input type="text" id="@(Id)" class="form-control datepicker @(Class)" data-provide="datepicker"
+           disabled="@Disabled"
+           @ref="currentElement"
+           @bind-value="BindValue"
+           @bind-value:event="oninput"
+           @bind-value:format="@Format"
+           @onchange="OnChange" />
