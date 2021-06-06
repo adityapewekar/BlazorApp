@@ -1,0 +1,34 @@
+@page "/ConfirmationCheckBox"
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+            <div class="form-group">
+                <ConfirmationCheckBox 
+                    @bind-Value="@CheckBoxValue"
+                    OnPopupClicked="@((value)=>PopupClicked(value))"
+                    PopupMessageForTrue="Are You sure ? It is checked."
+                    PopupMessageForFalse="Are You sure ? It is unchecked." />
+            </div>
+        </div>
+            <div class="row">
+              <p>CheckBoxValue : @CheckBoxValue</p>
+            </div>
+            <div class="row">
+              <p>Popup Value : @PopupValue</p>
+            </div>
+    </div>
+</div>
+@code{
+    
+        private bool? CheckBoxValue{get;set;}
+        private bool? PopupValue {get;set;}
+
+        /// <summary>
+        /// Method to be invoked on popup action by ConfirmationCheckBox component
+        /// </summary>
+        /// <param name="value">bool</param>
+        /// <returns></returns>
+        private void PopupClicked(bool value){
+            PopupValue=value;
+        }
+}

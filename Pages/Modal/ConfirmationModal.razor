@@ -1,0 +1,7 @@
+<div class="simple-form">
+    <div class="form-group">
+        @((MarkupString)@Body)
+    </div>
+        <button @onclick="@(()=>Close(true))" class="btn btn-success">Yes</button>
+        <button @onclick="@(()=>Close(false))" class="btn btn-danger">No</button>
+</div>

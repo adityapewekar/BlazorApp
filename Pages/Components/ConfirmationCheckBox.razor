@@ -1,0 +1,10 @@
+<div class="@Class">
+    <input class="checkbox" type="checkbox" id="@Id"
+            checked="@Value"
+            @bind-value="Value"
+            @bind-value:event="oninput"
+            @onchange="OnChecked"
+            readonly="@ReadOnly"
+            />
+            <label for="@Id"><span></span></label>
+</div>
