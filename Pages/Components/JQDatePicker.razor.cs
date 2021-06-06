@@ -10,25 +10,36 @@ namespace BlazorApp.Pages.Components
 {
 public partial class JQDatePicker{
 #region Parameter
-        [Parameter] public DateTime? BindValue { get; set; }
+        [Parameter] public DateTime? Value 
+        { 
+            get=>_value; 
+            set
+            {
+                if(_value==value) return;
+
+                _value=value;
+                ValueChanged.InvokeAsync(Value);
+             } 
+        }
         [Parameter] public string Format { get; set; }
-        [Parameter] public EventCallback<DateTime> DateSelected { get; set; }
         [Parameter] public string Id { get; set; }
         [Parameter] public string Class { get; set; }
         [Parameter] public bool Disabled { get; set; }
         [Parameter] public DateTime? MinDate { get; set; }
         [Parameter] public DateTime? MaxDate { get; set; }
+        [Parameter] public EventCallback<DateTime?> ValueChanged {get;set;}
         #endregion
         #region Inject
         [Inject] IJSRuntime JSRuntime { get; set; }
         #endregion
         private string DatePickerFormat { get; set; }
         ElementReference currentElement { get; set; }
+        private DateTime? _value ;
         #region Protected Method
         /// <summary>
         /// Method to initialize variable on component initialization
         /// </summary>
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             Format = string.IsNullOrEmpty(Format) ? "dd/MMM/yyyy" : Format;
             DatePickerFormat = string.IsNullOrEmpty(DatePickerFormat) ? "dd/M/yy" : DatePickerFormat;
@@ -76,9 +87,9 @@ public partial class JQDatePicker{
             DateTime dateTime;
             if (DateTime.TryParse(e.Value.ToString(), out dateTime))
             {
-                DateSelected.InvokeAsync(dateTime);
+                ValueChanged.InvokeAsync(dateTime);
             }
         }
         #endregion
-}
+    }
 }
